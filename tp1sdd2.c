@@ -31,7 +31,7 @@ switch (chx)
 	{
 	case 1 :  
 		//testez toutes vos fonctions par un jeu de test de votre choix
-		testPile(&mapile); //TP9 partie 1 : à ecrire 
+		testPile(); //TP9 partie 1 : à ecrire 
 		break;
 	case 2 : 
 		//scanf("%s",chaine); //une chaine de longueur <=MAX
@@ -51,13 +51,17 @@ printf("\nAu plaisir de vous revoir ...\n");
 return 0;
 }
 
-int testPile(T_PileD *P)
+int testPile()
 {
 	int choixTest;
 	T_Elt elemAj;
 	T_Elt elemDe;
-	initPile(P);
+	char chaine[100];
 
+	T_PileD mapile;
+	T_PileD mapile1;
+	initPile(&mapile1);
+	
 	
 	do
 	{
@@ -65,21 +69,28 @@ int testPile(T_PileD *P)
 		printf("\n\n\n1 - Afficher la pile");
 		printf("\n2 - Ajouter des éléments à la pile");
 		printf("\n3 - Supprimer des éléments de la pile");
+		printf("\n4 - Notation Polonaise Inverse");
 		printf("\nVotre choix ?  ");
 		scanf("%d",&choixTest);
 
 		switch (choixTest){
 			case 1:
-				afficherPile(P);
+				afficherPile(&mapile1);
 				break;
 			case 2:
 				printf("Quel élément voulez-vous empiler ? ");
-				scanf("%f",&elemAj);
-				empiler(P,elemAj);
+				scanf(" %c",&elemAj);
+				empiler(&mapile1,elemAj);
 				break;
 			case 3:
-				depiler(P,&elemDe);
-				printf("Elément dépilé : %f", elemDe);
+				depiler(&mapile1,&elemDe);
+				printf("Elément dépilé : %c", elemDe);
+				break;
+			case 4:
+				printf("Valeur ? ");
+				scanf(" %s", chaine);
+				initPile(&mapile);
+				rpn(&mapile, chaine);
 				break;
 		}
 	}while (choixTest!=0);

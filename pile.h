@@ -20,3 +20,4 @@ int hauteur(const  T_PileD *);
 void afficherPile(T_PileD *); //vous devez depiler la pile pour afficher chacune de ses valeurs (puis surtout la rempiler)
 
 
+int rpn(T_PileD *, char*);
